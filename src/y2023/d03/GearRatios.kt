@@ -13,9 +13,12 @@ private const val GEAR_NEIGHBOURING_PART_NUMBERS = 2
 fun main() {
     val input = readInput(yearPackageName = "y2023", dayPackageName = "d03", fileName = "input")
 
-    println(GearRatios.part1(input))
-    println(GearRatios.part2(input))
-
+    GearRatios.part1(input)
+        .also(::println)
+        .let { check(it == expectedAnswerPart1) }
+    GearRatios.part2(input)
+        .also(::println)
+        .let { check(it == expectedAnswerPart2) }
 }
 
 object GearRatios {

@@ -19,8 +19,12 @@ typealias Numbers = List<Int>
 fun main() {
     val input = readInput(yearPackageName = "y2023", dayPackageName = "d04", fileName = "input")
 
-    println(Scratchcards.part1(input))
-    println(Scratchcards.part2(input))
+    Scratchcards.part1(input)
+        .also(::println)
+        .let { check(it == expectedAnswerPart1) }
+    Scratchcards.part2(input)
+        .also(::println)
+        .let { check(it == expectedAnswerPart2) }
 }
 
 object Scratchcards {

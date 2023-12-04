@@ -16,8 +16,12 @@ private const val timeElapsedForPart2 = 119
 fun main() {
     val input = readInput(yearPackageName = "y2023", dayPackageName = "d01", fileName = "input")
 
-    println(Trebuchet.part1(input))
-    println(Trebuchet.part2(input))
+    Trebuchet.part1(input)
+        .also(::println)
+        .let { check(it == expectedAnswerPart1) }
+    Trebuchet.part2(input)
+        .also(::println)
+        .let { check(it == expectedAnswerPart2) }
 }
 
 object Trebuchet {
