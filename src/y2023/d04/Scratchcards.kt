@@ -1,7 +1,6 @@
 package y2023.d04
 
 import readInput
-import kotlin.math.pow
 
 private const val expectedAnswerPart1 = 25231
 private const val expectedAnswerPart2 = 9721255
@@ -12,7 +11,6 @@ private const val timeElapsedForPart2 = 31
 private const val CARD_LABEL_DELIMITER = ":"
 private const val CARD_WINNING_AND_LOTTERY_NUMBERS_DELIMITER = "|"
 private const val CARD_NUMBERS_DELIMITER = " "
-private const val EXPONENT_BASE = 2.0
 
 typealias Numbers = List<Int>
 
@@ -70,7 +68,7 @@ object Scratchcards {
 
         private fun calculatePoints(): Int {
             val power = lotteryNumbers.count { winningNumbers.contains(it) } - 1
-            return if (power < 0) 0 else EXPONENT_BASE.pow(power).toInt()
+            return if (power < 0) 0 else 1.shl(power)
         }
     }
 }
