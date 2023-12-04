@@ -5,6 +5,9 @@ import readInput
 private const val expectedAnswerPart1 = 514969
 private const val expectedAnswerPart2 = 78915902
 
+private const val timeElapsedForPart1 = 71
+private const val timeElapsedForPart2 = 30
+
 private const val GEAR_NEIGHBOURING_PART_NUMBERS = 2
 
 fun main() {
