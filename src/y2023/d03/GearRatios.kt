@@ -1,28 +1,26 @@
 package y2023.d03
 
-import readInput
 import y2023.PuzzleAnswer
 
-private const val answerPart1 = 514969
-private const val answerPart2 = 78915902
-
-private const val timeElapsedForPart1 = 71
-private const val timeElapsedForPart2 = 30
 
 private const val GEAR_NEIGHBOURING_PART_NUMBERS = 2
 
+/**
+ * answerPart1 = 514969
+ * answerPart2 = 78915902
+ *
+ * timeElapsedForPart1 = 71
+ * timeElapsedForPart2 = 30
+ */
 fun main() {
-    val input = readInput(yearPackageName = "y2023", dayPackageName = "d03", fileName = "input")
-
-    GearRatios.part1(input)
-        .also(::println)
-        .let { check(it == answerPart1) }
-    GearRatios.part2(input)
-        .also(::println)
-        .let { check(it == answerPart2) }
+    GearRatios.checkParts<Int, Int>()
 }
 
 object GearRatios : PuzzleAnswer<Int, Int> {
+    override val day = 3
+    override val expectedTestAnswerPart1 = 514969
+    override val expectedTestAnswerPart2 = 78915902
+
     override fun part1(input: List<String>): Int {
         return input.addTrailingDots()
             .findNumbers()

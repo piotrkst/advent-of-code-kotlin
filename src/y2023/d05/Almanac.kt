@@ -1,38 +1,36 @@
 package y2023.d05
 
 import WHITESPACE_DELIMITER
-import readInput
 import y2023.PuzzleAnswer
 
-private const val expectedTestAnswerPart1 = 35L
-private const val expectedTestAnswerPart2 = 46L
-
-private const val answerPart1 = 535088217L
-private const val answerPart2 = 51399228L
-
-private const val timeElapsedForPart1 = 115
-private const val timeElapsedForPart2 = 40
 
 private const val SEEDS_HEADER = "seeds: "
 private const val MAP_HEADER_SUFFIX = " map:"
 
+/**
+ * answerPart1 = 535088217L
+ * answerPart2 = 51399228L
+ *
+ * timeElapsedForPart1 = 115
+ * timeElapsedForPart2 = 40
+ */
 fun main() {
-    val input = readInput(yearPackageName = "y2023", dayPackageName = "d05", fileName = "input")
-
-    Almanac.part1(input)
-        .also(::println)
-        .let { check(it == answerPart1) }
-    Almanac.part2(input)
-        .also(::println)
-        .let { check(it == answerPart2) }
+    println("Checking part 1...")
+    Almanac.checkPart1<Long, Long>()
+    println("Checking part 2...")
+    Almanac.checkPart2<Long, Long>()
+    println("Finished!")
 }
 
 object Almanac : PuzzleAnswer<Long, Long> {
+    override val day = 5
+    override val expectedTestAnswerPart1 = 35L
+    override val expectedTestAnswerPart2 = 46L
+
     override fun part1(input: List<String>): Long {
         val seeds = input.getSeeds()
         val almanac = input.getAlmanac()
         return seeds.map { it.toLocation(almanac) }
-            .also(::println)
             .minBy { it }
     }
 
@@ -68,7 +66,6 @@ object Almanac : PuzzleAnswer<Long, Long> {
         .substringAfter(SEEDS_HEADER)
         .split(WHITESPACE_DELIMITER)
         .mapNotNull { it.toLongOrNull() }
-        .also(::println)
 
     private fun List<String>.getAlmanac(): List<Set<List<Long>>> {
         var mapEntries = mutableSetOf<List<Long>>()

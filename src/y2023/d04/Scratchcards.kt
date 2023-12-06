@@ -1,32 +1,30 @@
 package y2023.d04
 
 import WHITESPACE_DELIMITER
-import readInput
 import y2023.PuzzleAnswer
 
-private const val answerPart1 = 25231
-private const val answerPart2 = 9721255
-
-private const val timeElapsedForPart1 = 39
-private const val timeElapsedForPart2 = 31
 
 private const val CARD_LABEL_DELIMITER = ":"
 private const val CARD_WINNING_AND_LOTTERY_NUMBERS_DELIMITER = "|"
 
 typealias Numbers = List<Int>
 
+/**
+ * answerPart1 = 25231
+ * answerPart2 = 9721255
+ *
+ * timeElapsedForPart1 = 39
+ * timeElapsedForPart2 = 31
+ */
 fun main() {
-    val input = readInput(yearPackageName = "y2023", dayPackageName = "d04", fileName = "input")
-
-    Scratchcards.part1(input)
-        .also(::println)
-        .let { check(it == answerPart1) }
-    Scratchcards.part2(input)
-        .also(::println)
-        .let { check(it == answerPart2) }
+    Scratchcards.checkParts<Int, Int>()
 }
 
 object Scratchcards : PuzzleAnswer<Int, Int> {
+    override val day = 4
+    override val expectedTestAnswerPart1 = 25231
+    override val expectedTestAnswerPart2 = 9721255
+
     override fun part1(input: List<String>) = input.sumOf { card -> card.inputToCard().points }
 
     override fun part2(input: List<String>): Int {

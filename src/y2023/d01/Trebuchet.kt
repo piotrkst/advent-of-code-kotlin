@@ -1,31 +1,28 @@
 package y2023.d01
 
-import readInput
+import y2023.InputType
 import y2023.PuzzleAnswer
 import kotlin.math.min
 
-private const val expectedTestAnswerPart1 = 142
-private const val expectedTestAnswerPart2 = 281
 
-private const val answerPart1 = 54159
-private const val answerPart2 = 53866
-
-private const val timeElapsedForPart1 = 8
-private const val timeElapsedForPart2 = 119
-
-
+/**
+ * answerPart1 = 54159
+ * answerPart2 = 53866
+ *
+ * timeElapsedForPart1 = 8
+ * timeElapsedForPart2 = 119
+ */
 fun main() {
-    val input = readInput(yearPackageName = "y2023", dayPackageName = "d01", fileName = "input")
-
-    Trebuchet.part1(input)
-        .also(::println)
-        .let { check(it == answerPart1) }
-    Trebuchet.part2(input)
-        .also(::println)
-        .let { check(it == answerPart2) }
+    Trebuchet.checkParts<Int, Int>()
+    Trebuchet.checkPart1<Int, Int>(InputType.TestData)
+    Trebuchet.checkPart2<Int, Int>(InputType.Custom("test_input2"))
 }
 
 object Trebuchet : PuzzleAnswer<Int, Int> {
+    override val day = 1
+    override val expectedTestAnswerPart1 = 142
+    override val expectedTestAnswerPart2 = 281
+
     override fun part1(input: List<String>) = input.mapNotNull {
         val firstDigit = it.first { char -> char.isDigit() }
         val lastDigit = it.last { char -> char.isDigit() }

@@ -1,30 +1,25 @@
 package y2023.d06
 
 import WHITESPACE_DELIMITER
-import readInput
+import y2023.InputType
 import y2023.PuzzleAnswer
 
-private const val expectedTestAnswerPart1 = 288
-private const val expectedTestAnswerPart2 = 71503
-
-private const val answerPart1 = 1195150
-private const val answerPart2 = 42550411L
-
-private const val timeElapsedForPart1 = 16
-private const val timeElapsedForPart2 = 9
-
+/**
+ * answerPart1 = 1195150
+ * answerPart2 = 42550411L
+ *
+ * timeElapsedForPart1 = 16
+ * timeElapsedForPart2 = 9
+ */
 fun main() {
-    val input = readInput(yearPackageName = "y2023", dayPackageName = "d06", fileName = "input")
-
-    RacingErrorMarginCalculator.part1(input)
-        .also(::println)
-        .let { check(it == answerPart1) }
-    RacingErrorMarginCalculator.part2(input)
-        .also(::println)
-        .let { check(it == answerPart2) }
+    RacingErrorMarginCalculator.checkParts<Int, Long>(InputType.TestData)
 }
 
 object RacingErrorMarginCalculator : PuzzleAnswer<Int, Long> {
+    override val day = 6
+    override val expectedTestAnswerPart1 = 288
+    override val expectedTestAnswerPart2 = 71503L
+
     override fun part1(input: List<String>): Int {
         val times = input[0].split(WHITESPACE_DELIMITER)
             .filter { it.isNotBlank() }
