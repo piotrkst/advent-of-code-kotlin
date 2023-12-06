@@ -22,11 +22,11 @@ object RacingErrorMarginCalculator : PuzzleAnswer<Int, Long> {
 
     override fun part1(input: List<String>): Int {
         val times = input[0].split(WHITESPACE_DELIMITER)
-            .filter { it.isNotBlank() }
-            .mapNotNull { it.toLongOrNull() }
+            .filter(String::isNotBlank)
+            .mapNotNull(String::toLongOrNull)
         val distances = input[1].split(WHITESPACE_DELIMITER)
-            .filter { it.isNotBlank() }
-            .mapNotNull { it.toLongOrNull() }
+            .filter(String::isNotBlank)
+            .mapNotNull(String::toLongOrNull)
         return times.zip(distances)
             .map { Race(it.first, it.second) }
             .map(::calculateNumberOfWaysToBeatTheRecord)
@@ -35,8 +35,8 @@ object RacingErrorMarginCalculator : PuzzleAnswer<Int, Long> {
     }
 
     override fun part2(input: List<String>): Long {
-        val time = input[0].filter { it.isDigit() }
-        val distance = input[1].filter { it.isDigit() }
+        val time = input[0].filter(Char::isDigit)
+        val distance = input[1].filter(Char::isDigit)
         return calculateNumberOfWaysToBeatTheRecord(Race(time.toLong(), distance.toLong()))
     }
 
