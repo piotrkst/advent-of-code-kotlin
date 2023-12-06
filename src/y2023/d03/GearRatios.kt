@@ -1,9 +1,10 @@
 package y2023.d03
 
 import readInput
+import y2023.PuzzleAnswer
 
-private const val expectedAnswerPart1 = 514969
-private const val expectedAnswerPart2 = 78915902
+private const val answerPart1 = 514969
+private const val answerPart2 = 78915902
 
 private const val timeElapsedForPart1 = 71
 private const val timeElapsedForPart2 = 30
@@ -15,21 +16,21 @@ fun main() {
 
     GearRatios.part1(input)
         .also(::println)
-        .let { check(it == expectedAnswerPart1) }
+        .let { check(it == answerPart1) }
     GearRatios.part2(input)
         .also(::println)
-        .let { check(it == expectedAnswerPart2) }
+        .let { check(it == answerPart2) }
 }
 
-object GearRatios {
-    fun part1(input: List<String>): Int {
+object GearRatios : PuzzleAnswer<Int, Int> {
+    override fun part1(input: List<String>): Int {
         return input.addTrailingDots()
             .findNumbers()
             .filter { it.hasAdjacentSymbol(input) }
             .sumOf { it.value }
     }
 
-    fun part2(input: List<String>): Int {
+    override fun part2(input: List<String>): Int {
         val numbers = input.addTrailingDots()
             .findNumbers()
         return input.findPossibleGears()

@@ -1,16 +1,17 @@
 package y2023.d04
 
+import WHITESPACE_DELIMITER
 import readInput
+import y2023.PuzzleAnswer
 
-private const val expectedAnswerPart1 = 25231
-private const val expectedAnswerPart2 = 9721255
+private const val answerPart1 = 25231
+private const val answerPart2 = 9721255
 
 private const val timeElapsedForPart1 = 39
 private const val timeElapsedForPart2 = 31
 
 private const val CARD_LABEL_DELIMITER = ":"
 private const val CARD_WINNING_AND_LOTTERY_NUMBERS_DELIMITER = "|"
-private const val CARD_NUMBERS_DELIMITER = " "
 
 typealias Numbers = List<Int>
 
@@ -19,16 +20,16 @@ fun main() {
 
     Scratchcards.part1(input)
         .also(::println)
-        .let { check(it == expectedAnswerPart1) }
+        .let { check(it == answerPart1) }
     Scratchcards.part2(input)
         .also(::println)
-        .let { check(it == expectedAnswerPart2) }
+        .let { check(it == answerPart2) }
 }
 
-object Scratchcards {
-    fun part1(input: List<String>) = input.sumOf { card -> card.inputToCard().points }
+object Scratchcards : PuzzleAnswer<Int, Int> {
+    override fun part1(input: List<String>) = input.sumOf { card -> card.inputToCard().points }
 
-    fun part2(input: List<String>): Int {
+    override fun part2(input: List<String>): Int {
         val cards = input.map { card -> card.inputToCard() }
         return cards.mapIndexed { index, card ->
             cards.bumpNextCardsQuantities(index, card)
@@ -48,7 +49,7 @@ object Scratchcards {
         .toCard()
 
     private fun extractNumbers(numbersInput: String): List<Int> =
-        numbersInput.split(CARD_NUMBERS_DELIMITER).mapNotNull { it.toIntOrNull() }
+        numbersInput.split(WHITESPACE_DELIMITER).mapNotNull { it.toIntOrNull() }
 
     private fun List<Numbers>.toCard(): Card {
         require(size == 2) { "Invalid numbers list size for Card creation" }

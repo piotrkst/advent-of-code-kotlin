@@ -1,18 +1,19 @@
 package y2023.d05
 
+import WHITESPACE_DELIMITER
 import readInput
+import y2023.PuzzleAnswer
 
 private const val expectedTestAnswerPart1 = 35L
 private const val expectedTestAnswerPart2 = 46L
 
-private const val expectedAnswerPart1 = 535088217L
-private const val expectedAnswerPart2 = 51399228L
+private const val answerPart1 = 535088217L
+private const val answerPart2 = 51399228L
 
 private const val timeElapsedForPart1 = 115
 private const val timeElapsedForPart2 = 40
 
 private const val SEEDS_HEADER = "seeds: "
-private const val NUMBER_DELIMITER = " "
 private const val MAP_HEADER_SUFFIX = " map:"
 
 fun main() {
@@ -20,14 +21,14 @@ fun main() {
 
     Almanac.part1(input)
         .also(::println)
-        .let { check(it == expectedAnswerPart1) }
+        .let { check(it == answerPart1) }
     Almanac.part2(input)
         .also(::println)
-        .let { check(it == expectedAnswerPart2) }
+        .let { check(it == answerPart2) }
 }
 
-object Almanac {
-    fun part1(input: List<String>): Long {
+object Almanac : PuzzleAnswer<Long, Long> {
+    override fun part1(input: List<String>): Long {
         val seeds = input.getSeeds()
         val almanac = input.getAlmanac()
         return seeds.map { it.toLocation(almanac) }
@@ -36,7 +37,7 @@ object Almanac {
     }
 
     // FIXME: Fix efficiency - kids, do not copy/paste this at home, it's a bad code
-    fun part2(input: List<String>): Long {
+    override fun part2(input: List<String>): Long {
         var lowestLocation: Long = Long.MAX_VALUE
         val seeds = input.getSeeds()
         val almanac = input.getAlmanac()
@@ -65,7 +66,7 @@ object Almanac {
 
     private fun List<String>.getSeeds() = first()
         .substringAfter(SEEDS_HEADER)
-        .split(NUMBER_DELIMITER)
+        .split(WHITESPACE_DELIMITER)
         .mapNotNull { it.toLongOrNull() }
         .also(::println)
 
@@ -87,7 +88,7 @@ object Almanac {
                 if (!it.first().isDigit()) {
                     mapKey = it
                 } else {
-                    mapEntries.add(it.split(NUMBER_DELIMITER).map { number -> number.toLong() })
+                    mapEntries.add(it.split(WHITESPACE_DELIMITER).map { number -> number.toLong() })
                 }
             }
         return almanac.values.toList()
