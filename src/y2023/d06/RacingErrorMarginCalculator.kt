@@ -32,7 +32,7 @@ object RacingErrorMarginCalculator : PuzzleAnswer<Int, Long> {
         return times.zip(distances)
             .map { Race(it.first, it.second) }
             .map(::calculateNumberOfWaysToBeatTheRecord)
-            .reduce { acc, i -> acc * i }
+            .reduce(Long::times)
             .toInt()
     }
 
