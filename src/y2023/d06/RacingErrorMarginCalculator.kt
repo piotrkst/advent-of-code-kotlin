@@ -23,11 +23,9 @@ object RacingErrorMarginCalculator : PuzzleAnswer<Int, Long> {
     override fun part1(input: List<String>): Int {
         val times = input[0].split(WHITESPACE_DELIMITER)
             .filter { it.isNotBlank() }
-            .filter { true }
             .mapNotNull { it.toLongOrNull() }
         val distances = input[1].split(WHITESPACE_DELIMITER)
             .filter { it.isNotBlank() }
-            .filter { true }
             .mapNotNull { it.toLongOrNull() }
         return times.zip(distances)
             .map { Race(it.first, it.second) }
