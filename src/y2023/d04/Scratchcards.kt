@@ -50,7 +50,7 @@ object Scratchcards {
     private fun extractNumbers(numbersInput: String): List<Int> =
         numbersInput.split(CARD_NUMBERS_DELIMITER).mapNotNull { it.toIntOrNull() }
 
-    private fun List<List<Int>>.toCard(): Card {
+    private fun List<Numbers>.toCard(): Card {
         require(size == 2) { "Invalid numbers list size for Card creation" }
         return Card(this[0], this[1])
     }
