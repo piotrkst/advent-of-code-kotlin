@@ -4,6 +4,9 @@ import WHITESPACE_DELIMITER
 import y2023.PuzzleAnswer
 
 
+private typealias ListWithoutEmptyEntries = List<Int>
+private typealias EntriesSortedDescending = List<Int>
+
 /**
  * answerPart1 = 253910319
  * answerPart2 = 254083736
@@ -114,11 +117,7 @@ object CamelCards : PuzzleAnswer<Int, Int> {
         TWO_PAIR(strength = 3, rule = { entries -> entries.size == 3 && entries.isExactly(listOf(2, 2, 1)) }),
         ONE_PAIR(strength = 2, rule = { entries -> entries.size == 4 }),
         HIGH_CARD(strength = 1, rule = { entries -> entries.size == 5 });
-
     }
 
     private fun List<Int>.isExactly(other: List<Int>) = zip(other).all { (first, second) -> first == second }
 }
-
-private typealias ListWithoutEmptyEntries = List<Int>
-private typealias EntriesSortedDescending = List<Int>
